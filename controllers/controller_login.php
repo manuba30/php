@@ -1,12 +1,13 @@
 <?php
 // SI LE FORMULAIRE EST VALIDE
+
 if (isset($_POST['email']) && isset($_POST['password']) && !empty($_POST['email']) && !empty($_POST['password'])) {
     $password = htmlentities(strip_tags($_POST['password']));
     $email = htmlentities(strip_tags($_POST['email']));
     // On se connecte à la base de données 
     // Pour vérifier si l'email est dans la table user si c'est le cas on récupère les datas de l'utilisateur
     $db = connectDB();
-    $query = $db->prepare("SELECT * FROM users WHERE email=:email LIMIT 1");
+    $query = $db->prepare("SELECT users.*,contact.firstname,contact.lastname FROM users,contact WHERE email=:email AND users.id=contact.user_id LIMIT 1");
     // bindParam permet de renseigner la requête afin de "protéger" le serveur SQL
     $query->bindParam(':email', $email);
     $query->execute();

@@ -20,18 +20,21 @@ function limitarCaracteres($texto, $limite) {
         }
     </style>
 
-    <?php foreach ($posts as $key => $article) : ?>
+    <?php foreach ($posts as $post) : ?>
 
         <article class="text-center mb-4">
             <div class="card">
-                <h4><?= $article['title'] ?></h4>
-                <small><?= $article['created_at'] ?></small>
-                <img id="posts" src="<?= $article['image'] ?>">
+                <h4><?= $post['title'] ?></h4>
+                <small><?= $post['created_at'] ?></small>
+                <p><small>Author: <strong><?= $post['firstname'] ?> <?= $post['lastname'] ?></strong></small></p>
+                <img id="posts" src="<?= $post['image'] ?>">
                 <div class="card-body" id="card">
-                    <p class="card-text"><?= limitarCaracteres($article['description'], 100) ?></p>
+                    <p class="card-text"><?= limitarCaracteres($post['description'], 100) ?></p>
                 </div>
             </div>
         </article>
 
     <?php endforeach ?>
 </section>
+
+select * from post where user_id =:user_id

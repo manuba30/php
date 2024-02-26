@@ -1,9 +1,9 @@
 <?php
 //ma logique de controller
 $db = connectDB();
-
+$posts = [];
 if($db) {
-    $sql = $db->prepare("SELECT * FROM post ORDER BY id");
+    $sql = $db->prepare("SELECT post.*,contact.firstname,contact.lastname FROM post,contact WHERE post.user_id=contact.user_id ORDER BY id DESC");
     $sql->execute();
 
     $posts = $sql->fetchAll(PDO::FETCH_ASSOC);
