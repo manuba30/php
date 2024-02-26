@@ -27,9 +27,10 @@ function limitarCaracteres($texto, $limite) {
                 <h4><?= $post['title'] ?></h4>
                 <small><?= $post['created_at'] ?></small>
                 <p><small>Author: <strong><?= $post['firstname'] ?> <?= $post['lastname'] ?></strong></small></p>
-                <img id="posts" src="<?= $post['image'] ?>">
+                <a href="?page=page_post&id=<?= $post['id'] ?>"><img id="posts" src="<?= $post['image'] ?>"></a>
                 <div class="card-body" id="card">
                     <p class="card-text"><?= limitarCaracteres($post['description'], 100) ?></p>
+                    <a href="?page=page_post&id=<?= $post['id'] ?>" class="btn btn-dark">Read more</a>
                 </div>
             </div>
         </article>

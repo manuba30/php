@@ -1,0 +1,20 @@
+<h1>all members</h1>
+
+<?php foreach ($members as $member) : ?>
+
+<article class="text-center mb-4">
+    <div class="card">
+        <h4>member: <strong><?= $member['firstname'] ?> <?= $member['lastname'] ?></h4>        
+        <p><small>id <?= $member['id'] ?></strong></small></p>
+        <small><?= $member['registred_at'] ?></small>
+        <a href="?page=page_post&id=<?= $member['id'] ?>"><img id="posts" src="<?= $member['image'] ?>"></a>
+        <div class="card-body" id="card">
+            <a href="?page=page_profile_description=<?= $member['id'] ?>" class="btn btn-dark">add a description</a>
+            <!-- <p class="card-text"><?= limitarCaracteres($member['description'], 100) ?></p> -->
+        </div>
+    </div>
+</article>
+
+<?php endforeach ?>
+
+member: <strong><?= $member['firstname'] ?> <?= $member['lastname'] ?>
