@@ -1,0 +1,38 @@
+<h1>search result(s) for <?=$keywords?></h1>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, dignissimos! Debitis voluptatibus est accusamus tempora dolorem maiores, sint repellat magni laboriosam? Cumque voluptas ad voluptatibus laborum harum qui a fuga?</p>
+<br>
+
+
+
+<?php 
+function limitarCaracteres($texto, $limite) {
+    if (strlen($texto) > $limite) {
+        $texto = substr($texto, 0, $limite);
+        $texto .= '...';
+        }
+    return $texto;
+}
+?>
+
+<style>
+        #posts {
+            min-height: 420px;
+            max-height: 420px;
+        }
+
+    </style>
+
+<section id="search" class="text-center row row-cols-1 row-cols-md-3 g-4">
+    <?php foreach($posts as $article) : ?>
+    <article class="text-center mb-4">   
+<div class="card text-center">
+    <img src="<?= $article['image'] ?>" class="card-img-top" id="posts">
+    <div class="card-body">
+        <h5 class="card-title"><?= $article['title'] ?></h5>
+    </div>
+    <div>
+        <p class="card-text"><?= limitarCaracteres($article['description'], 100) ?></p>
+    </div>
+    </article>
+
+<?php endforeach; ?>

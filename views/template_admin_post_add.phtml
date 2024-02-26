@@ -1,0 +1,30 @@
+<h1>add a new post</h1>
+<br>
+<form action="?page=admin_post_add" method="POST">
+<div class="mb-3">
+  <label for="title" class="form-label">Title</label>
+  <input type="text" class="form-control" id="title" name="title" placeholder="Add a title">
+</div>
+<div class="mb-3">
+  <label for="description" class="form-label">Description</label>
+  <textarea maxlength="255" type="text" class="form-control" id="description" name="description" placeholder="Add a description">
+  </textarea>
+</div>
+<div class="mb-3">
+  <label for="image" class="form-label">Image</label>
+  <input type="text" class="form-control" id="image" name="image" placeholder="Add an URL">
+</div>
+<div class="m-3 text-center">
+  <input type="submit" class="btn btn-success" id="image" value="add a new Post ! ">
+</div>
+</form>
+<!-- <script>
+  function AddPost(){
+    const question = window.confirm("are you sure you want to add this post ?");
+    if (question === true) {
+        location.href="?page=admin";
+    } else {
+        return false;
+    }  
+  }
+</script> -->

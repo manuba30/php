@@ -1,0 +1,37 @@
+<h1 class="text-center m-4">gallery</h1>
+<p class="text-center m-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam fuga deleniti sunt officia autem suscipit dolor quo beatae nostrum culpa ut debitis amet, explicabo quae magnam provident mollitia aperiam error!</p>
+
+<?php
+
+function limitarCaracteres($texto, $limite) {
+    if (strlen($texto) > $limite) {
+        $texto = substr($texto, 0, $limite);
+        $texto .= '...';
+        }
+    return $texto;
+}
+
+?>
+<section class="row row-cols-1 row-cols-md-3 g-4">
+    <style>
+        #posts {
+            min-height: 420px;
+            max-height: 420px;
+        }
+    </style>
+
+    <?php foreach ($posts as $key => $article) : ?>
+
+        <article class="text-center mb-4">
+            <div class="card">
+                <h4><?= $article['title'] ?></h4>
+                <small><?= $article['created_at'] ?></small>
+                <img id="posts" src="<?= $article['image'] ?>">
+                <div class="card-body" id="card">
+                    <p class="card-text"><?= limitarCaracteres($article['description'], 100) ?></p>
+                </div>
+            </div>
+        </article>
+
+    <?php endforeach ?>
+</section>
