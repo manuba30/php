@@ -13,6 +13,7 @@ if (isset($_POST['email']) && isset($_POST['password']) && !empty($_POST['email'
     $query->execute();
     // On stocke toutes les infos user dans la variable $user
     $user = $query->fetch(PDO::FETCH_ASSOC);
+
     // Au départ on suppose qu'il n'y a pas d'erreur
     // Le tableau des erreurs est donc vide
     $errors = [];
@@ -29,7 +30,8 @@ if (isset($_POST['email']) && isset($_POST['password']) && !empty($_POST['email'
         // On retire le mot-de-passe hashé ...
         unset($user['password']);
         // Avant de charger toutes les infos utilisateur dans la session
-        $_SESSION['user'] = $user;
+        $_SESSION['user'] = $user; 
+
         // SI $_SESSION['user']['roles'] ne contient pas ROLE_ADMIN
         // DANS CE CAS ON REDIRIGE SUR LA HOME
         if (!in_array("ROLE_ADMIN", json_decode($_SESSION['user']['roles']))) {

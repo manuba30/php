@@ -7,14 +7,24 @@
         <h4>member: <strong><?= $member['firstname'] ?> <?= $member['lastname'] ?></h4>        
         <p><small>id <?= $member['id'] ?></strong></small></p>
         <small><?= $member['registred_at'] ?></small>
-        <a href="?page=page_post&id=<?= $member['id'] ?>"><img id="posts" src="<?= $member['image'] ?>"></a>
+        <!-- <a href="?page=page_post&id=<?= $member['id'] ?>"><img id="posts" src="<?= $member['image'] ?>"></a> -->
         <div class="card-body" id="card">
-            <a href="?page=page_profile_description=<?= $member['id'] ?>" class="btn btn-dark">add a description</a>
-            <!-- <p class="card-text"><?= limitarCaracteres($member['description'], 100) ?></p> -->
+            <a href="?page=update_description&id=<?= $member['id'] ?>" class="btn btn-dark">add a description</a>
+            <p class="card-text"><?= $member['message'] ?></p> <br>
+            <a class="btn btn-danger" href="javascript:deletePost(<?=$post['id'];?>)" role="button">delete</a>
         </div>
     </div>
 </article>
 
 <?php endforeach ?>
 
-member: <strong><?= $member['firstname'] ?> <?= $member['lastname'] ?>
+<script>
+  function deletePost(id){
+    const question = window.confirm("are you sure you want to delete this post "+$member['id']+"?");
+    if (question === true) {
+        location.href="?page=profiles";
+    } else {
+        return false;
+    }  
+  }
+</script>

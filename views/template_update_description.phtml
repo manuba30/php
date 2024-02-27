@@ -1,0 +1,11 @@
+<h1>update your biography <?= $the_post['id'] ?></h1>
+<form action="?page=update_description&id=<?= $the_post['id'] ?>" method="POST">
+<pre>
+<?= var_dump($user_id)?>
+</pre>
+<textarea maxlength="255" class="form-control" name="message" id="description" placeholder="Add a description"><?= $the_post['message'] ?></textarea>
+
+<div class="m-3 text-center">
+    <input type="submit" class="btn btn-success" value="Update bio !">
+</div>
+</form>
