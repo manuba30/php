@@ -1,11 +1,42 @@
-<h1>update your biography <?= $the_post['id'] ?></h1>
-<form action="?page=update_description&id=<?= $the_post['id'] ?>" method="POST">
+<h1>update your biography <?= $the_post['user_id'] ?></h1>
 <pre>
-<?= var_dump($user_id)?>
+<?= var_dump($user_id) ?>
 </pre>
-<textarea maxlength="255" class="form-control" name="message" id="description" placeholder="Add a description"><?= $the_post['message'] ?></textarea>
-
-<div class="m-3 text-center">
-    <input type="submit" class="btn btn-success" value="Update bio !">
-</div>
+<form class="row g-3" action="?page=update_description&id=<?= $the_post['user_id'] ?>" method="POST">
+    <div class="col-md-6">
+        <label for="firstname" class="form-label">Firstname</label>
+        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="<?= $the_post['firstname'] ?>">
+    </div>
+    <div class="col-md-6">
+        <label for="lastname" class="form-label">Lastname</label>
+        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="<?= $the_post['lastname'] ?>">
+    </div>
+    <div class="col-12">
+        <label for="address1" class="form-label">Address 1</label>
+        <input type="text" class="form-control" id="address1" name="address1" placeholder="<?= $the_post['address1'] ?>">
+    </div>
+    <div class="col-12">
+        <label for="address2" class="form-label">Address 2</label>
+        <input type="text" class="form-control" id="address2" name="address2" placeholder="<?= $the_post['address2'] ?>">
+    </div>
+    <div class="col-md-6">
+        <label for="city" class="form-label">City</label>
+        <input type="text" class="form-control" id="city" name="city" placeholder="<?= $the_post['city'] ?>">
+    </div>
+    <div class="col-md-2">
+        <label for="zip" class="form-label">Zip</label>
+        <input type="text" class="form-control" id="zip" name="zip" placeholder="<?= $the_post['zip'] ?>">
+    </div> <br>
+    <div>
+        <textarea maxlength="255" class="form-control" name="message" id="description" placeholder="Add a description"><?= $the_post['message'] ?></textarea>
+    </div> <br>
+    <div class="col-12">
+        <div class="form-check">
+            <input required class="form-check-input" type="checkbox" id="accepted" name="accepted">
+            <label class="form-check-label" for="accepted">
+                I accept the new changes
+            </label>
+            <div class="m-3 text-center">
+                <input type="submit" class="btn btn-success" value="Update bio !">
+            </div>
 </form>
