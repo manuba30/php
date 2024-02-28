@@ -19,4 +19,24 @@ function connectDB(){
     }
     return $db;
 }
+function isRole($role){ // retourne true ou false
+    // Si $_SESSION['user'] est défini
+    // ET $_SESSION['user']['roles'] contient le rôle indiqué
+    // $is_role retourne un booleen true/false
+    $is_role = isset($_SESSION['user']) && in_array($role,json_decode($_SESSION['user']['roles']));
+    return $is_role;
+}
+// Fonctions de debug simple
+function dump($var){
+    echo "<pre>";
+    var_dump($var);
+    echo "</pre>";
+}
+// Fonctions de debug avec un die
+function dump_die($var){
+    echo "<pre>";
+    var_dump($var);
+    echo "</pre>";
+    die();
+}
 ?>

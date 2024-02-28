@@ -16,10 +16,10 @@
 
   <section style="background-color: #e7effd;"><br>
 
-    <form class="mb-5" method="POST" action="?page=page_post&id=<?= $post_id ?>">
-      <textarea maxlength="255" class="form-control" name="comment" id="comment" placeholder="Add a description"></textarea>
+    <!-- <form class="mb-5" method="POST" action="?page=page_post&id=<?= $post_id ?>">
+      <textarea maxlength="255" class="form-control" name="comment" id="comment" placeholder="Add a comment"></textarea>
       <input type="submit" class="btn btn-dark" value="post a comment !">
-    </form>
+    </form> -->
 
     <div class="card mb-3">
             <!-- <img class="rounded-circle shadow-1-strong me-3"
@@ -29,11 +29,11 @@
               <div class="card mb-3">
                 <div class="card-body">
                   <?php
-                  $post_id = (int)$_GET['id'];
-                  $db = connectDB();
-                  $sql = $db->prepare("SELECT * from comment INNER JOIN contact ON comment.user_id = contact.user_id where post_id= $post_id ORDER BY posted_at DESC");
-                  $sql->execute();
-                  $posts = $sql->fetch(PDO::FETCH_ASSOC);
+                  //$post_id = (int)$_GET['id'];
+                  //$db = connectDB();
+                  //$sql = $db->prepare("SELECT * from comment INNER JOIN contact ON comment.user_id = contact.user_id where post_id= $post_id ORDER BY posted_at DESC");
+                  //$sql->execute();
+                  //$posts = $sql->fetch(PDO::FETCH_ASSOC);
                   ?>
 
                   <h5> <?= $post['firstname'] ?> <?= $post['lastname'] ?></h5>
@@ -49,6 +49,21 @@
                 </div> 
                 </div>
               <?php endforeach; ?>
+              <?php if (isRole("ROLE_MEMBER")): ?>
+        <form method="POST">
+        <div class="col-12">
+            <div class="form-floating mb-3">
+                <textarea rows="10" maxlength="255" class="form-control" placeholder="Leave a message here" id="comment" name="comment"></textarea>
+                <label for="message">Comment</label>
+            </div>
+        </div>
+        <div class="col-12 mb-3">
+            <button type="submit" class="btn btn-dark">Send</button>
+        </div>
+        </form>
+    <?php else: ?>   
+        <p>You must be <a href="?page=contact">registered</a> and <a href="?page=login">connected</a> as a member in order to post comments.</p>
+    <?php endif ?>
               </div>
   </section>
 </article>

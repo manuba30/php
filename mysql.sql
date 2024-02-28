@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 26 fév. 2024 à 13:44
+-- Généré le : mer. 28 fév. 2024 à 09:18
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `mvc_php`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `comment`
+--
+
+CREATE TABLE `comment` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `comments` varchar(255) NOT NULL,
+  `posted_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `comment`
+--
+
+INSERT INTO `comment` (`id`, `user_id`, `post_id`, `comments`, `posted_at`) VALUES
+(1, 21, 15, 'dfdfgh,', '2024-02-27 00:00:00'),
+(3, 21, 15, 'earg', '2024-02-27 15:44:23'),
+(4, 21, 15, 'earg', '2024-02-27 15:44:29');
 
 -- --------------------------------------------------------
 
@@ -45,8 +68,9 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`id`, `user_id`, `firstname`, `lastname`, `address1`, `address2`, `city`, `state`, `zip`, `message`) VALUES
-(16, 21, 'manoel', 'coelho', 'rua', 'NBL', 'BR', 'Hauts-de-France', '69400', 'thr'),
-(17, 22, 'do', 'du', 'rua', 'mbl', 'BR', 'Pays de la Loire', '54420', 'jklj');
+(16, 21, 'manoel', 'coelho', 'rua', 'NBL', 'BR', 'Hauts-de-France', '69400', 'hello\r\n'),
+(17, 22, 'do', 'du', 'rua', 'mbl', 'BR', 'Pays de la Loire', '54420', 'its me\r\n'),
+(18, 23, 'manp', 'dab', 'francia', 'france', 'BR', 'Bretagne', '789987', 'prazer');
 
 -- --------------------------------------------------------
 
@@ -75,9 +99,9 @@ INSERT INTO `post` (`id`, `user_id`, `title`, `description`, `image`, `created_a
 (5, 21, 'cinquieme commentaire', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio vel exercitationem quasi, nemo voluptatem eligendi neque, repellendus unde iusto explicabo numquam voluptatum illum expedita ab quia, quibusdam doloribus dolorum. Nulla.', 'https://cdn.pixabay.com/photo/2023/12/06/21/07/photo-8434385_1280.jpg', '2024-02-20 11:29:59'),
 (6, 21, 'sixieme article de blog ouhouhou', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio vel exercitationem quasi, nemo voluptatem eligendi neque, repellendus unde iusto explicabo numquam voluptatum illum expedita ab quia, quibusdam doloribus dolorum. Nulla.', 'https://cdn.pixabay.com/photo/2017/02/01/22/02/mountain-landscape-2031539_1280.jpg', '2024-02-20 10:29:49'),
 (12, 21, 'dia', '  bom', 'https://cdn.pixabay.com/photo/2023/06/03/13/44/bird-8037744_1280.jpg', '2024-02-23 16:49:47'),
-(13, 21, 'hello', '  bonjour', 'https://cdn.pixabay.com/photo/2023/10/31/10/24/pond-8354797_1280.jpg', '2024-02-26 09:56:37'),
+(13, 21, 'hello', '  bonjour', 'https://cdn.pixabay.com/photo/2024/01/08/21/31/frozen-8496388_1280.jpg', '2024-02-26 09:56:37'),
 (14, 21, 'test id', 'what is the id ?', 'https://cdn.pixabay.com/photo/2023/10/31/10/24/pond-8354797_1280.jpg', '2024-02-26 11:31:44'),
-(15, 22, 'new user ', 'lorem ipslum ak errorN', 'https://cdn.pixabay.com/photo/2023/10/31/10/24/pond-8354797_1280.jpg', '2024-02-26 12:17:07');
+(15, 22, 'new user ', 'lorem ipslum ak errorN', 'https://cdn.pixabay.com/photo/2023/12/11/12/03/tawny-owl-8443456_1280.jpg', '2024-02-26 12:17:07');
 
 -- --------------------------------------------------------
 
@@ -99,11 +123,20 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `email`, `password`, `roles`, `registred_at`) VALUES
 (21, 'manoelcoelho3003@gmail.com', '$2y$10$qsqwQlR0o4WFF4un8EZPbeeCPekxqVMOuF8CGiY91yAA5AFLtP9Su', '[\"ROLE_ADMIN\",\"ROLE_MEMBER\"]', '2024-02-22 13:52:28'),
-(22, 'lucas@gmail.com', '$2y$10$Fujzw3VkERKUBSU5xxK3keaDbRMo9e2EzWuz8NrHHXNJpEBHudEta', '[\"ROLE_ADMIN\",\"ROLE_MEMBER\"]', '2024-02-22 16:37:42');
+(22, 'lucas@gmail.com', '$2y$10$Fujzw3VkERKUBSU5xxK3keaDbRMo9e2EzWuz8NrHHXNJpEBHudEta', '[\"ROLE_ADMIN\",\"ROLE_MEMBER\"]', '2024-02-22 16:37:42'),
+(23, 'luca@gmail.com', '$2y$10$v68AOu4oPilo.soVVNfwE.LK9nyvRstndeVMpb4YfCA9ZackXZkb.', '[\"ROLE_MEMBER\"]', '2024-02-27 09:45:11');
 
 --
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_post` (`post_id`),
+  ADD KEY `fk_user` (`user_id`);
 
 --
 -- Index pour la table `contact`
@@ -130,10 +163,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT pour la table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT pour la table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT pour la table `post`
@@ -145,11 +184,18 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `fk_post` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`),
+  ADD CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Contraintes pour la table `contact`
