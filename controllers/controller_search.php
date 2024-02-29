@@ -1,6 +1,6 @@
 <?php
 // ma logique de controller
-$db = connectDB();
+$db = Utils::connectDB();
 $keywords = strip_tags(urldecode(trim($_GET['keywords'])));
 $posts = [];
 if($db) {

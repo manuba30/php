@@ -1,6 +1,6 @@
 <?php
 //ma logique de controller
-$db = connectDB();
+$db = Utils::connectDB();
 $members = [];
 if($db) {
     $sql = $db->prepare("SELECT users.*,contact.firstname,contact.lastname,contact.message FROM users,contact WHERE users.id=contact.user_id ORDER BY users.registred_at ");

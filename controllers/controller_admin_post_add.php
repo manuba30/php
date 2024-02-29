@@ -16,7 +16,7 @@ if (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['imag
 $title = htmlentities(strip_tags($_POST['title']));
 $description = htmlentities(strip_tags($_POST['description']));
 $image = htmlentities(strip_tags($_POST['image']));
-$db = connectDB();
+$db = Utils::connectDB();
 $sql = $db->prepare("INSERT INTO post (user_id , title, description, image) VALUES (:user_id, :title, :description, :image)");
         // Les champs ne sont pas insérés directement pour des raisons de sécu,
         // Mais on utilise une fonction pour "binder" (faire correspondre) les variables/valeurs

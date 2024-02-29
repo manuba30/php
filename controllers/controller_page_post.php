@@ -1,7 +1,7 @@
 <?php
 $post_id = (int)$_GET['id'];
 // On effectue la requête SQL permettant de récupérer les données du post
-$db = connectDB();
+$db = Utils::connectDB();
 //DETAILS POST
 $sql = $db->prepare("SELECT post.*,contact.firstname,contact.lastname FROM post,contact WHERE post.id='".$_GET['id']."' AND post.user_id=contact.user_id LIMIT 1");
 $sql->execute();

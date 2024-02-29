@@ -5,7 +5,7 @@ if ( !isset($_SESSION['user']) || !in_array("ROLE_ADMIN",json_decode($_SESSION['
 }
 $post_id = (int)$_GET['id'];
 echo "attention suppression de post".$post_id;
-$db = connectDB();
+$db = Utils::connectDB();
 $sql = $db->prepare("DELETE FROM post WHERE id=$post_id");
 $sql->execute();
 header("location:?page=admin");

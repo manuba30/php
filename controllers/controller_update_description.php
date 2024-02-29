@@ -6,7 +6,7 @@ if (!isset($_SESSION['user']) || !in_array("ROLE_ADMIN", json_decode($_SESSION['
     exit();
 }
 // On effectue la requête SQL permettant de récupérer les données du post
-$db = connectDB();
+$db = Utils::connectDB();
 $sql = $db->prepare("SELECT contact.* FROM contact WHERE user_id=$user_id");
 $sql->execute();
 $the_post = $sql->fetch(PDO::FETCH_ASSOC);

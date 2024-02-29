@@ -1,6 +1,6 @@
 <?php
 // ma logique de controller
-$db = connectDB();
+$db = Utils::connectDB();
 
 if($db) {
     $sql = $db->prepare("SELECT * FROM post ORDER BY id LIMIT 3");

@@ -10,7 +10,7 @@ if ( !isset($_SESSION['user']) || !in_array("ROLE_ADMIN",json_decode($_SESSION['
 // Donc $post_id = (int)$_GET['id'];
 $post_id = (int)$_GET['id'];
 // On effectue la requête SQL permettant de récupérer les données du post
-$db = connectDB();
+$db = Utils::connectDB();
 $sql = $db->prepare("SELECT * FROM post WHERE id=$post_id");
 $sql->execute();
 $the_post = $sql->fetch(PDO::FETCH_ASSOC);

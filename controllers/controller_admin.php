@@ -6,7 +6,7 @@ if ( !isset($_SESSION['user']) || !in_array("ROLE_ADMIN",json_decode($_SESSION['
     header("Location:?page=home");
     exit();
 }
-$db = connectDB();
+$db = Utils::connectDB();
 $posts = [];
 
 if($db) {
